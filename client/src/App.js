@@ -8,6 +8,7 @@ import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import setAuthToken from "./utils/setAuthToken";
 import PrivateRoute from "./components/routing/PrivateRoute";
+import Dial from "./components/pages/Dial";
 import "./App.css";
 
 if (localStorage.token) {
@@ -26,6 +27,7 @@ function App() {
             <Route exact path="/about" component={About} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/dial" component={Dial} />
           </Switch>
         </div>
       </React.Fragment>

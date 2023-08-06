@@ -1,4 +1,4 @@
 {
-  "mongoURI": "Your Mongo Connection String",
-  "jwtSecret": "Your Jwt Secret"
+  "mongoURI": "mongodb+srv://Yousssama:Xxx123456789@mongoose.et7ygog.mongodb.net/?retryWrites=true&w=majority",
+  "jwtSecret": "aDk34Ght94JnDvB78KjT3wRy6ZlQ1mNpO2sXrEtYfUcVb5B"
 }

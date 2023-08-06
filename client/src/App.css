@@ -2,7 +2,7 @@
 
 /* Global Styles */
 :root {
-  --primary-color: #003699;
+  --primary-color: #8f1c8a;
   --dark-color: #333333;
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
@@ -17,7 +17,7 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  font-size: 1rem;
+  font-size: 0.8rem;
   line-height: 1.6;
   background-color: #fff;
   color: #333;
@@ -177,6 +177,7 @@ img {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 2rem;
+  margin: 60px;
 }
 
 .grid-3 {
@@ -368,35 +369,77 @@ table th {
 }
 
 /* Navbar */
+/* Navbar Styles */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.7rem 2rem;
-  z-index: 1;
-  width: 100%;
-  border-bottom: solid 1px var(--primary-color);
-  opacity: 0.9;
-  margin-bottom: 1rem;
+  background-color: #6c0e66;
+  color: #fff;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar h1 {
+  font-size: 24px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  border: 2px solid #fff;
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+.navbar i {
+  font-size: 28px;
+  margin-right: 10px;
 }
 
 .navbar ul {
+  list-style: none;
   display: flex;
+  align-items: center;
+}
+
+.navbar li {
+  margin-left: 40px;
+  font-size: medium;
 }
 
 .navbar a {
   color: #fff;
-  padding: 0.45rem;
-  margin: 0 0.25rem;
+  text-decoration: none;
+  font-size: 16px;
+
+  margin: 0;
+  display: flex;
+  align-items: center;
+  border: 2px solid #ffffff;
+  padding: 8px 12px;
+  border-radius: 4px;
 }
 
 .navbar a:hover {
-  color: var(--light-color);
+  color: #f4f4f4;
 }
 
-.navbar .welcome span {
-  margin-right: 0.6rem;
+/* Button Styles */
+.btn {
+  display: inline-block;
+  background-color: #8f3c96;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
+
+.btn:hover {
+  background-color: #a75ca7;
+}
+
 
 /* Animation (Add After) */
 .item-enter {
@@ -456,4 +499,8 @@ table th {
     text-align: center;
     justify-content: center;
   }
+}
+
+.nav-icon {
+  margin-right: 6px; /* Add spacing between the icon and the text */
 }

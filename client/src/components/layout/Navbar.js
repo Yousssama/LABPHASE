@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../../store/actions/auth";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserPlus, faSignInAlt, faPhone } from "@fortawesome/free-solid-svg-icons";
+
 
 function Navbar({ title, icon, auth, logout }) {
   const onLogout = () => {
@@ -23,11 +26,14 @@ function Navbar({ title, icon, auth, logout }) {
   const guestLink = (
     <React.Fragment>
       <li>
-        <Link to="/register">Register</Link>
+        <Link to="/register"><FontAwesomeIcon icon={faUserPlus} className="nav-icon" />Register</Link>
       </li>
       <li>
-        <Link to="/login">Login</Link>
+        <Link to="/login"><FontAwesomeIcon icon={faSignInAlt} className="nav-icon" />Login</Link>
       </li>
+      <li>
+          <Link to="/dial">  <FontAwesomeIcon icon={faPhone} className="nav-icon" />Dial</Link>
+        </li>
     </React.Fragment>
   );
 
@@ -45,8 +51,8 @@ Navbar.propTypes = {
   icon: PropTypes.string
 };
 Navbar.defaultProps = {
-  title: "Cloud Contact",
-  icon: "fa fa-id-card"
+  title: "Cloud Connect",
+  icon: "fa fa-creative-commons"
 };
 const mapStatesToProps = state => {
   return { auth: state.auth };
