@@ -1,5 +1,5 @@
 {
-  "name": "cloud-contact",
+  "name": "cloud-connect",
   "version": "1.0.0",
   "description": "Contact Manager App",
   "main": "server.js",
@@ -9,9 +9,9 @@
     "client": "npm start --prefix client",
     "client-install": "npm install --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "build": "npm run build"
   },
-  "author": "Mahmudul Alam",
+
   "license": "ISC",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
