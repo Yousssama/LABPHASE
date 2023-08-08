@@ -1,6 +1,7 @@
 {
   "name": "cloud-connect",
   "version": "1.0.0",
+  "homepage": ".",
   "description": "Contact Manager App",
   "main": "server.js",
   "scripts": {
