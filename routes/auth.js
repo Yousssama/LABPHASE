@@ -7,9 +7,7 @@ const config = require("config");
 const jwt = require("jsonwebtoken");
 const auth = require("../middleware/auth");
 
-// @route   GET api/auth
-// @desc    Get the Logged in user
-// @access Private
+
 
 router.get("/", auth, async (req, res) => {
   try {
