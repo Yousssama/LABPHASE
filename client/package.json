@@ -1,6 +1,7 @@
 {
   "name": "client",
   "version": "0.1.0",
+  "homepage": "https://coruscating-pithivier-1e235c.netlify.app/",
   "private": true,
   "dependencies": {
     "axios": "^1.4.0",

@@ -34,6 +34,7 @@ function Login({ setAlert, login, auth, history, clearErrors }) {
   };
 
   const { email, password } = user;
+
   return (
     <div className="form-container">
       <h1>
@@ -42,15 +43,22 @@ function Login({ setAlert, login, auth, history, clearErrors }) {
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <label htmlFor="email">Email</label>
-          <input type="email" name="email" value={email} onChange={onChange} />
+          <input
+            type="email"
+            name="email"
+            value={email}
+            onChange={onChange}
+            required
+          />
         </div>
         <div className="form-group">
-          <label htmlFor="name">Password</label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             name="password"
             value={password}
             onChange={onChange}
+            required
           />
         </div>
 
@@ -63,9 +71,9 @@ function Login({ setAlert, login, auth, history, clearErrors }) {
     </div>
   );
 }
-const mapStatesToProps = state => {
+
+const mapStateToProps = state => {
   return { auth: state.auth };
 };
-export default connect(mapStatesToProps, { setAlert, login, clearErrors })(
-  Login
-);
+
+export default connect(mapStateToProps, { setAlert, login, clearErrors })(Login);

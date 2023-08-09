@@ -6,11 +6,11 @@ import FilterContacts from "../contacts/FilterContacts";
 import { getContacts } from "../../store/actions/contacts";
 import { loadUser } from "../../store/actions/auth";
 
-function Home(props) {
+const Home = ({ loadUser, getContacts }) => {
   useEffect(() => {
-    props.loadUser();
-    props.getContacts();
-    //eslint-disable-next-line
+    loadUser();
+    getContacts();
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -22,6 +22,6 @@ function Home(props) {
       </div>
     </div>
   );
-}
+};
 
 export default connect(null, { loadUser, getContacts })(Home);

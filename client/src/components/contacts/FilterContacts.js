@@ -1,18 +1,19 @@
 import React, { useRef } from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types"; // Import PropTypes
 import { filterContacts } from "../../store/actions/contacts";
 
 function FilterContacts({ filterContacts }) {
-  const text = useRef("");
+  const textRef = useRef(null);
 
-  const handleChange = e => {
-    e.preventDefault();
-    filterContacts(text.current.value);
+  const handleChange = () => {
+    filterContacts(textRef.current.value);
   };
+
   return (
     <form>
       <input
-        ref={text}
+        ref={textRef}
         type="text"
         placeholder="Filter contacts..."
         onChange={handleChange}
@@ -20,4 +21,9 @@ function FilterContacts({ filterContacts }) {
     </form>
   );
 }
+
+FilterContacts.propTypes = {
+  filterContacts: PropTypes.func.isRequired // Define the expected prop type
+};
+
 export default connect(null, { filterContacts })(FilterContacts);

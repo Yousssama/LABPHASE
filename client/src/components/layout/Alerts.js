@@ -3,16 +3,19 @@ import { connect } from "react-redux";
 
 function Alerts({ alerts }) {
   return (
-    alerts.length > 0 &&
-    alerts.map(alert => (
-      <div key={alert.id} className={`alert alert-${alert.type}`}>
-        <i className="fa fa-info-circle"></i> {alert.msg}
-      </div>
-    ))
+    <div>
+      {alerts.length > 0 &&
+        alerts.map(alert => (
+          <div key={alert.id} className={`alert alert-${alert.type}`}>
+            <i className="fa fa-info-circle"></i> {alert.msg}
+          </div>
+        ))}
+    </div>
   );
 }
 
-const mapStatesToProps = state => {
+const mapStateToProps = state => {
   return { alerts: state.alert };
 };
-export default connect(mapStatesToProps)(Alerts);
+
+export default connect(mapStateToProps)(Alerts);

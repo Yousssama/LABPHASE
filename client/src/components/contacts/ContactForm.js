@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import {
   addContact,
@@ -6,29 +6,26 @@ import {
   clearSelected
 } from "../../store/actions/contacts";
 
-const initState = {
+const initialState = {
   name: "",
   email: "",
   phone: "",
   type: "personal"
 };
 
-function ContactForm(props) {
-  const { selected, addContact, updateContact, clearSelected } = props;
-  const [contact, setContact] = useState(initState);
-
-  useEffect(() => {
-    if (selected._id) {
-      setContact(selected);
-    } else {
-      setContact(initState);
-    }
-  }, [selected]);
+function ContactForm({
+  selected,
+  addContact,
+  updateContact,
+  clearSelected
+}) {
+  const [contact, setContact] = useState(initialState);
 
   const { name, email, phone, type } = contact;
 
   const onChange = e => {
-    setContact({ ...contact, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setContact(prevContact => ({ ...prevContact, [name]: value }));
   };
 
   const handleSubmit = e => {
@@ -39,7 +36,7 @@ function ContactForm(props) {
     } else {
       addContact(contact);
     }
-    setContact(initState);
+    setContact(initialState); // Clear the form fields after submission
   };
 
   return (
@@ -69,22 +66,26 @@ function ContactForm(props) {
         onChange={onChange}
       />
       <h5>Contact Type</h5>
-      <input
-        type="radio"
-        name="type"
-        value="personal"
-        checked={type === "personal"}
-        onChange={onChange}
-      />
-      Personal{" "}
-      <input
-        type="radio"
-        name="type"
-        value="professional"
-        checked={type === "professional"}
-        onChange={onChange}
-      />
-      Professional{" "}
+      <label>
+        <input
+          type="radio"
+          name="type"
+          value="personal"
+          checked={type === "personal"}
+          onChange={onChange}
+        />
+        Personal
+      </label>{" "}
+      <label>
+        <input
+          type="radio"
+          name="type"
+          value="professional"
+          checked={type === "professional"}
+          onChange={onChange}
+        />
+        Professional
+      </label>{" "}
       <div>
         <input
           type="submit"
@@ -103,10 +104,12 @@ function ContactForm(props) {
     </form>
   );
 }
-const mapStatesToProps = state => {
+
+const mapStateToProps = state => {
   return { selected: state.contacts.selected };
 };
-export default connect(mapStatesToProps, {
+
+export default connect(mapStateToProps, {
   addContact,
   updateContact,
   clearSelected

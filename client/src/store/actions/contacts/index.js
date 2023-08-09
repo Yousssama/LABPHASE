@@ -10,12 +10,17 @@ import {
   CLEAR_SELECTED
 } from "../../types";
 
+const handleContactError = (dispatch, err) => {
+  const errorMsg = err.response && err.response.data.msg ? err.response.data.msg : 'An error occurred';
+  dispatch({ type: CONTACT_ERROR, payload: errorMsg });
+};
+
 export const getContacts = () => async dispatch => {
   try {
     const res = await axios.get("/api/contacts/");
     dispatch({ type: GET_CONTACTS, payload: res.data });
   } catch (err) {
-    dispatch({ type: CONTACT_ERROR, payload: err.response.msg });
+    handleContactError(dispatch, err);
   }
 };
 
@@ -29,7 +34,7 @@ export const addContact = contact => async dispatch => {
     const res = await axios.post("/api/contacts/", contact, config);
     dispatch({ type: ADD_CONTACT, payload: res.data });
   } catch (err) {
-    dispatch({ type: CONTACT_ERROR, payload: err.response.msg });
+    handleContactError(dispatch, err);
   }
 };
 
@@ -38,28 +43,24 @@ export const deleteContact = id => async dispatch => {
     await axios.delete(`/api/contacts/${id}`);
     dispatch({ type: DELETE_CONTACT, payload: id });
   } catch (err) {
-    dispatch({ type: CONTACT_ERROR, payload: err.response.msg });
+    handleContactError(dispatch, err);
   }
 };
 
-export const updateContact = contact => async dispatch => {
+export const updateContact = ({ _id, ...contact }) => async dispatch => {
   const config = {
     headers: {
       "Content-Type": "application/json"
     }
   };
   try {
-    const res = await axios.put(
-      `/api/contacts/${contact._id}`,
-      contact,
-      config
-    );
+    const res = await axios.put(`/api/contacts/${_id}`, contact, config);
     dispatch({ type: UPDATE_CONTACT, payload: res.data });
   } catch (err) {
-    console.log(err);
-    dispatch({ type: CONTACT_ERROR, payload: err.response.msg });
+    handleContactError(dispatch, err);
   }
 };
+
 
 export const filterContacts = text => {
   return { type: FILTER_CONTACT, payload: text };

@@ -1,20 +1,21 @@
 const express = require("express");
 const connectDB = require("./config/db");
 const path = require("path");
-const cors = require("cors"); // Import the cors package
+const cors = require("cors");
 
 const app = express();
 
-// Connect to database
+// Connect to the database
 connectDB();
-// Init middleware
-app.use(express.json({ extended: true }));
+
+// Initialize middleware
+app.use(express.json());
 
 // Use the cors middleware
 app.use(cors());
 
 // Define a basic route for testing purposes
-app.use((req, res) => {
+app.get("/", (req, res) => {
   res.send("API is running...");
 });
 
@@ -34,4 +35,3 @@ if (process.env.NODE_ENV === "production") {
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log("Server started on port:", PORT));
-

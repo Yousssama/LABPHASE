@@ -30,10 +30,10 @@ function Register({ setAlert, register, auth, history, clearErrors }) {
 
   const onSubmit = e => {
     e.preventDefault();
-    if (name === "" || email === "" || password === "") {
+    if (!name || !email || !password) {
       setAlert("Please enter all fields", "danger");
     } else if (password !== password2) {
-      setAlert("Password do not match", "danger");
+      setAlert("Passwords do not match", "danger");
     } else {
       register({ name, email, password });
     }
@@ -54,7 +54,7 @@ function Register({ setAlert, register, auth, history, clearErrors }) {
           <input type="email" name="email" value={email} onChange={onChange} />
         </div>
         <div className="form-group">
-          <label htmlFor="name">Password</label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             name="password"
@@ -63,7 +63,7 @@ function Register({ setAlert, register, auth, history, clearErrors }) {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="name">Confirm Password</label>
+          <label htmlFor="password2">Confirm Password</label>
           <input
             type="password"
             name="password2"
@@ -80,10 +80,9 @@ function Register({ setAlert, register, auth, history, clearErrors }) {
     </div>
   );
 }
-const mapStatesToProps = state => {
+
+const mapStateToProps = state => {
   return { auth: state.auth };
 };
 
-export default connect(mapStatesToProps, { setAlert, register, clearErrors })(
-  Register
-);
+export default connect(mapStateToProps, { setAlert, register, clearErrors })(Register);
